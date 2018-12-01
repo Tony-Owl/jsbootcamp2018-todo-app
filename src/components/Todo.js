@@ -1,12 +1,28 @@
 import React from 'react';
 
-const Todo = () => {
+const Todo = (props) => {
+  const checkedBox = props.todo.completed;
   return (
-    <label class="list-item">
-      <div class="list-item__container">
-        <input type="checkbox" /><span>Thing 1</span>
+    <label className="list-item">
+      <div className="list-item__container">
+        <input
+          type="checkbox"
+          checked={checkedBox}
+          onChange={() => {
+            props.handleToggleTodo(props.todo.id)
+            }
+          }
+        />
+        <span>{props.todo.text}</span>
       </div>
-      <button class="button button--text">remove</button>
+      <button
+        className="button button--text"
+        onClick={()=>{
+          props.handleRemoveTodo(props.todo.id)
+        }}
+      >
+        remove
+      </button>
     </label>
   );
 };

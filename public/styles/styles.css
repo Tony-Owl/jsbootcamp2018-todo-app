@@ -9,7 +9,7 @@ html {
 }
 
 body {
-    background: #2B292E;
+  background: #2B292E;
   color: #fafafa;
   font-family: Helvetica, Arial, sans-serif;
   font-size: 1.6rem;
@@ -48,6 +48,20 @@ a {
   /* color: #777; */
   font-size: 1.6rem;
   font-weight: 300;
+}
+
+
+/* Footer */
+.footer {
+    margin-top: 2rem;
+    text-align: center;
+    padding-top: 1rem;
+    color: #717171;
+    font-style: italic;
+}
+
+.footer hr {
+    border-color: #717171;
 }
 
 /* Actions Bar */
@@ -202,4 +216,10 @@ a {
 
 .empty-message {
     margin: 3.2rem 0;
+}
+
+.add-todo-error {
+    text-align: center;
+    font-style: italic;
+    margin-bottom: 1.6rem;
 }
