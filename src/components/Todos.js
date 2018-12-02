@@ -7,6 +7,11 @@ class Todos extends React.Component {
     error: undefined
   }
 
+  handleFilterUpdate = (e) => {
+    console.log(this.props.todos)
+  // const 
+  }
+
   handleAddTodo = (e) => {
     e.preventDefault();    
     const text = e.target.elements.todo.value.trim();    
@@ -24,14 +29,22 @@ class Todos extends React.Component {
     };
   }
 
-  render() {    
+  render() {
+    const filteredTodos = this.props.todos.filter((todo) => {
+      const searchTextMatch = todo.text.toLowerCase().includes(this.props.filters.searchText.toLowerCase())
+      const hideCompletedMatch = !this.props.filters.hideCompleted || !todo.completed
+      return searchTextMatch && hideCompletedMatch
+    });
+    
+    const incompleteTodos = filteredTodos.filter((todo) => !todo.completed);
+
     return (
       <div className="container">
         <div id="todos">
-          <h2 className="list-title">You have {this.props.todos.length} todos left</h2>
-          {this.props.todos.length <= 0 && <p className="empty-message">No to-dos to show</p>}
+          <h2 className="list-title">You have {incompleteTodos.length} todos left</h2>
+          {filteredTodos.length <= 0 && <p className="empty-message">No to-dos to show</p>}
           {!!this.state.error && <p className="add-todo-error">{this.state.error}</p>}
-          {!!this.props.todos.length && this.props.todos.map(todo => <Todo
+          {!!filteredTodos.length && filteredTodos.map(todo => <Todo
             todo={todo}
             key={todo.id}            
             handleRemoveTodo={this.props.handleRemoveTodo}

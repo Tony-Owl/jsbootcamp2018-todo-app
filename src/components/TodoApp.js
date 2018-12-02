@@ -31,8 +31,8 @@ export default class TodoApp extends React.Component {
     };
   }
   
-  componentDidUpdate() {
-    localStorage.setItem('todos', JSON.stringify(this.state.todos));    
+  componentDidUpdate() {    
+    localStorage.setItem('todos', JSON.stringify(this.state.todos));
   }
   
   handleAddTodo = (todo) => {
@@ -75,29 +75,25 @@ export default class TodoApp extends React.Component {
   }
 
   setFilters = (updates) => {
-    if (typeof updates === 'string') {
-      console.log(updates);
+    if (typeof updates === 'string') {      
       this.setState((prevState)=>({
-        filters: {
+        filters: {          
           searchText: updates,
           hideCompleted: prevState.filters.hideCompleted
         }
-      }));
+      }));      
     };    
 
     if (typeof updates === 'boolean') {
-      console.log(this.state.filters);      
-      console.log(updates);
       this.setState((prevState)=>({
         filters: {
           searchText: prevState.filters.searchText,
           hideCompleted: updates
-        }
-      }));
-      console.log(this.state.filters);
+        }      
+      }));      
     };
   }
-
+  
   render(){
     return (
       <div>
@@ -107,6 +103,7 @@ export default class TodoApp extends React.Component {
         />
         <Todos 
           todos={this.state.todos}
+          filters={this.state.filters}
           handleAddTodo={this.handleAddTodo}
           handleRemoveTodo={this.handleRemoveTodo}
           handleToggleTodo={this.handleToggleTodo}
